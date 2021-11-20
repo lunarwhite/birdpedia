@@ -39,6 +39,37 @@ func TestRouter(t *testing.T) {
 	}
 }
 
+func TestRouterForNonExistentRoute(t *testing.T) {
+	r := newRouter()
+	mockServer := httptest.NewServer(r)
+
+	// Most of the code is similar. The only difference is that now we make a
+	// request to a route we know we didn't define, like the `POST /hello` route.
+	resp, err := http.Post(mockServer.URL+"/hello", "", nil)
+
+	if err != nil {
+		t.Fatal(err)
+	}
+	// We want our status to be 405 (method not allowed)
+	if resp.StatusCode != http.StatusMethodNotAllowed {
+		t.Errorf("Status should be 405, got %d", resp.StatusCode)
+	}
+
+	// Also mostly the same, except this time, we expect an empty body
+	defer resp.Body.Close()
+
+	b, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		t.Fatal(err)
+	}
+	respString := string(b)
+	expected := ""
+	if respString != expected {
+		t.Errorf("Response should be %s, got %s", expected, respString)
+	}
+
+}
+
 func TestHandler(t *testing.T) {
 	// Here, we form a new HTTP request. This is the request that's going to be passed to our handler.
 	// The first argument is the method, the second argument is the route,
