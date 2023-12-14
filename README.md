@@ -1,5 +1,9 @@
 # birdpedia
+
 A standalone web app written in Golang to build a community encyclopedia of birds.
+
+Explore more details in this [blog post](https://lunarwhite.notion.site/Birdpedia-a-community-encyclopedia-of-birds-56f2b8930b3840a7a2f6c7689d8d6a5a).
+
 ```
 .
 ├── LICENSE
@@ -15,15 +19,16 @@ A standalone web app written in Golang to build a community encyclopedia of bird
 └── main_test.go
 ```
 
-## 1 feature
+## Feature
+
 - Display the different entries submitted by the community, with the name and details of the bird they found.
 - Allow anyone to post a new entry about a bird that they saw.
 
-## 2 structure
+## Structure
+
 1. The web server
 2. The front-end (client side) app
 
-## 3 tool chain
-- Golang
+## Tool chain
 
-Explore more details in this [blog post](https://www.notion.so/lunarwhite-dev/Build-a-Community-Encyclopedia-of-Birds-92e63d50a5a644deae4e93da465dcc4b).
+- Golang
